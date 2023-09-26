@@ -1,0 +1,46 @@
+package br.com.alura.loja.modelo;
+
+import javax.persistence.Embedded;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "TB_CLIENTE")
+public class Cliente {
+
+    @Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+    @Embedded
+    private DadosPessoais dadosPessoais;
+
+    public Cliente(String nome, String cpf) {
+
+        this.dadosPessoais = new DadosPessoais(nome, cpf);
+
+    }
+
+    public Cliente() {}
+
+    public DadosPessoais getDadosPessoais () {
+
+        return dadosPessoais;
+
+    }
+
+    public Long getId() {
+
+        return id;
+
+    }
+
+    public void setId(Long id) {
+        
+        this.id = id;
+
+    }
+    
+}
